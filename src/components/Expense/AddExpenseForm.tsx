@@ -1,7 +1,5 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { Expense } from "../../types/types";
-import exp from "constants";
 
 const AddExpenseForm = () => {
   // Exercise: Consume the AppContext here
@@ -23,6 +21,15 @@ const AddExpenseForm = () => {
     }
     
   };
+
+  const updateCost = (props: any) => {
+    if (Number.isNaN(props)) {
+      setCost(0);
+    }
+    else {
+      setCost(props);
+    }
+  }
 
   return (
     <form onSubmit={(event) => onSubmit(event)}>
@@ -46,11 +53,11 @@ const AddExpenseForm = () => {
             className="form-control"
             id="cost"
             value={cost}
-            onChange={(event) => setCost(parseInt(event.target.value))}
+            onChange={(event) => updateCost(parseInt(event.target.value))}
           ></input>
         </div>
         <div className="col-sm">
-          <button type="submit" className="btn btn-primary mt-3">
+          <button type="submit" className="btn btn-primary mt-3" id="save">
             Save
           </button>
         </div>
