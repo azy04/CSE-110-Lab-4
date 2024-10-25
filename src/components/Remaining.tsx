@@ -18,7 +18,7 @@ const Remaining = () => {
 
   return (
     <div className={`alert ${alertType}`}>
-      <span data-testid="remaining" data-remaining={budget - totalExpenses}>Remaining: ${budget - totalExpenses}</span>
+      <span id="remaining" data-remaining={budget - totalExpenses}>Remaining: ${budget - totalExpenses}</span>
     </div>
   );
 };

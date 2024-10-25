@@ -72,29 +72,53 @@ describe("Required Test Cases", () => {
     const nameInput = document.getElementById("name") as HTMLElement;
     const costInput = document.getElementById("cost") as HTMLElement;
     const saveButton = document.getElementById("save") as HTMLElement;
-    const budget = parseInt(screen.getByTestId("budget").getAttribute("budget") as string);
-    const remainingBudget = parseInt(screen.getByTestId("remaining").getAttribute("remaining") as string);
-    const totalExpense = parseInt(screen.getByTestId("total").getAttribute("total") as string);
+    const budget = document.getElementById("budget") as HTMLElement;
+    const remainingBudget = document.getElementById("remaining") as HTMLElement;
+    const totalExpense = document.getElementById("total") as HTMLElement
 
-    expect(budget).toBe(remainingBudget-totalExpense);
+    let budgetValue = parseInt(budget.getAttribute("data-budget") as string);
+    let remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
+    let totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
+    expect(budgetValue).toBe(remainingValue+totalValue);
+    expect(budgetValue).toBe(1000);
+    expect(remainingValue).toBe(1000);
+    expect(totalValue).toBe(0);
 
     fireEvent.change(nameInput, {target: {value: "Groceries"}});
     fireEvent.change(costInput, {target: {value: "100"}});
     fireEvent.click(saveButton);
-
-    expect(budget).toBe(remainingBudget-totalExpense);
+    
+    budgetValue = parseInt(budget.getAttribute("data-budget") as string);
+    remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
+    totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
+    expect(budgetValue).toBe(remainingValue+totalValue);
+    expect(budgetValue).toBe(1000);
+    expect(remainingValue).toBe(900);
+    expect(totalValue).toBe(100);
 
     fireEvent.change(nameInput, {target: {value: "Clothes"}});
     fireEvent.change(costInput, {target: {value: "65"}});
     fireEvent.click(saveButton);
     
-    expect(budget).toBe(remainingBudget-totalExpense);
+    budgetValue = parseInt(budget.getAttribute("data-budget") as string);
+    remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
+    totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
+    expect(budgetValue).toBe(remainingValue+totalValue);
+    expect(budgetValue).toBe(1000);
+    expect(remainingValue).toBe(835);
+    expect(totalValue).toBe(165);
 
     fireEvent.change(nameInput, {target: {value: "Dinner"}});
     fireEvent.change(costInput, {target: {value: "24"}});
     fireEvent.click(saveButton);
     
-    expect(budget).toBe(remainingBudget-totalExpense);
+    budgetValue = parseInt(budget.getAttribute("data-budget") as string);
+    remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
+    totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
+    expect(budgetValue).toBe(remainingValue+totalValue);
+    expect(budgetValue).toBe(1000);
+    expect(remainingValue).toBe(811);
+    expect(totalValue).toBe(189);
   });
 });
 
@@ -120,11 +144,17 @@ describe("Test Edge Cases", () => {
     const nameInput = document.getElementById("name") as HTMLElement;
     const costInput = document.getElementById("cost") as HTMLElement;
     const saveButton = document.getElementById("save") as HTMLElement;
-    const budget = parseInt(screen.getByTestId("budget").getAttribute("budget") as string);
-    const remainingBudget = parseInt(screen.getByTestId("remaining").getAttribute("remaining") as string);
-    const totalExpense = parseInt(screen.getByTestId("total").getAttribute("total") as string);
+    const budget = document.getElementById("budget") as HTMLElement;
+    const remainingBudget = document.getElementById("remaining") as HTMLElement;
+    const totalExpense = document.getElementById("total") as HTMLElement
 
-    expect(budget).toBe(remainingBudget-totalExpense);
+    let budgetValue = parseInt(budget.getAttribute("data-budget") as string);
+    let remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
+    let totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
+    expect(budgetValue).toBe(remainingValue+totalValue);
+    expect(budgetValue).toBe(1000);
+    expect(remainingValue).toBe(1000);
+    expect(totalValue).toBe(0);
 
     fireEvent.change(nameInput, {target: {value: "Payment"}});
     fireEvent.change(costInput, {target: {value: "-100"}});
@@ -134,6 +164,13 @@ describe("Test Edge Cases", () => {
 
     expect(screen.getByText("Payment")).toBeInTheDocument();
     expect(screen.getByText("$-100")).toBeInTheDocument();
-    expect(budget).toBe(remainingBudget-totalExpense);
+
+    budgetValue = parseInt(budget.getAttribute("data-budget") as string);
+    remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
+    totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
+    expect(budgetValue).toBe(remainingValue+totalValue);
+    expect(budgetValue).toBe(1000);
+    expect(remainingValue).toBe(1100);
+    expect(totalValue).toBe(-100);
   });
 });
