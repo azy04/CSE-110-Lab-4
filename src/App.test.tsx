@@ -80,7 +80,7 @@ describe("Required Test Cases", () => {
     let remainingValue = parseInt(remainingBudget.getAttribute("data-remaining") as string);
     let totalValue = parseInt(totalExpense.getAttribute("data-total") as string);
     expect(budgetValue).toBe(remainingValue+totalValue);
-    expect(budgetValue).toBe(10000);
+    expect(budgetValue).toBe(1000);
     expect(remainingValue).toBe(1000);
     expect(totalValue).toBe(0);
 
