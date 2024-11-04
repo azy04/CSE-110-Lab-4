@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
-import { fetchBudget } from "./budget-utils";
+import { fetchBudget } from "../../utils/budget-utils";
 
 const Budget = () => {
   const { budget, setBudget } = useContext(AppContext);
